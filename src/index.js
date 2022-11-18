@@ -4,12 +4,22 @@ var debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 300;
 const input = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list')
-let arrCountry = [];
+
 input.addEventListener('input', debounce(inputEvent, DEBOUNCE_DELAY));
 
 function inputEvent(e) {
-  localStorage.setItem('countryName', JSON.stringify(e.target.value));
-  const countryFind = JSON.parse(localStorage.getItem('countryName'));
-   API.fetchCountries(countryFind);
+    fetchCountries(e.target.value)
+    .then((countries) => renderList(countries))
     
 }
+
+function renderList(countries) { 
+    
+        countries.map((country) => { 
+        countryList.innerHTML +=  
+        `<li>
+            <img src="${country.flags.svg}">
+            <p>${country.name.official}</p>
+        </li>`
+    })
+    }    
