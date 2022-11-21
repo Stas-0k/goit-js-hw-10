@@ -11,8 +11,7 @@ input.addEventListener('input', debounce(inputEvent, DEBOUNCE_DELAY));
 
 function inputEvent(e) {
     fetchCountries(e.target.value.trim())
-        .then((countries) => renderList(countries))
-        
+        .then((countries) => renderList(countries))        
 }
 
 function renderList(countries) { 
