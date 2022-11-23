@@ -11,8 +11,9 @@ input.addEventListener('input', debounce(inputEvent, DEBOUNCE_DELAY));
 
 function inputEvent(e) {
     fetchCountries(e.target.value.trim())
-        .then((countries) => renderList(countries))   
-        .catch(()=> countryList.innerHTML = '')
+        .then((countries) => renderList(countries))
+        .catch(() => countryList.innerHTML = '',
+         countryInfo.innerHTML = '')
 }
 
 function renderList(countries) { 
