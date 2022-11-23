@@ -11,7 +11,8 @@ input.addEventListener('input', debounce(inputEvent, DEBOUNCE_DELAY));
 
 function inputEvent(e) {
     fetchCountries(e.target.value.trim())
-        .then((countries) => renderList(countries))        
+        .then((countries) => renderList(countries))   
+        .catch(()=> countryList.innerHTML = '')
 }
 
 function renderList(countries) { 
@@ -24,6 +25,7 @@ function renderList(countries) {
         Notiflix.Notify.warning('Too many matches found. Please enter a more specific name.')
     }
     else if (countries.length > 1 & countries.length <= 10) {
+        countryInfo.innerHTML = ''
         countries.map((country) => {
             countryList.innerHTML +=
                 `<li>
