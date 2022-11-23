@@ -15,10 +15,15 @@ function inputEvent(e) {
 }
 
 function renderList(countries) { 
+    if (!countries) { 
+        countryList.innerHTML = ''
+        countryInfo.innerHTML = ''
+    } 
     
-    if (countries.length > 10) {
+    else if (countries.length > 10) {
         Notiflix.Notify.warning('Too many matches found. Please enter a more specific name.')
-    } else if (countries.length > 1 & countries.length <= 10) {
+    }
+    else if (countries.length > 1 & countries.length <= 10) {
         countries.map((country) => {
             countryList.innerHTML +=
                 `<li>
@@ -26,7 +31,8 @@ function renderList(countries) {
             <p>${country.name.official}</p>
         </li>`
         })
-    } else if (countries.length === 1) {
+    }
+    else {
         countries.map((country) => 
         {
             countryList.innerHTML = '';
@@ -41,8 +47,5 @@ function renderList(countries) {
             <h2 class="cont-data"><p class="main-text">Languages:</p>${Object.values(country.languages)}</h2>
         </div>`
         })
-    } else { 
-        countryList.innerHTML = ''
-        countryInfo.innerHTML = ''
-    }
+    } 
     }  
